@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+    *, ::after, ::before {
+        @apply font-quick_sand;
+
+        color: #EEEEEE;
+    }
+
+    .active-color {
+        @apply text-third
+    }
+
+    input {
+        outline: none !important;
+    }
+}
+
+@layer components {
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .left-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .top-center {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

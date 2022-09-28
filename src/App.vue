@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="w-full" :class="$store.state.lock_scroll ? 'h-screen overflow-y-hidden' : ''">
+    <Loading :enable="$store.state.loading || false"/>
+    <Window :enable="$store.state.signin_window" @window="closeWindow" v-slot="props">
+      <CForm :class="props.class"></CForm>
+    </Window>
+    <router-view/>
+    <FooterBase/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  // Components
+  import FooterBase from './components/Base/Footer.vue'
+  import Window from './components/Window.vue'
+  import CForm from './components/Form.vue'
+  import Loading from './components/Loading.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    components: {
+      FooterBase,
+      Window,
+      CForm,
+      Loading
+    },
+
+    methods: {
+      closeWindow(close) {
+        this.$store.commit('toggleSigninWindow', close)
+      }
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    min-height: 100vh;
+    background-color: #141414;
+    display: flex;
+    justify-content: center;
+  }
 </style>
