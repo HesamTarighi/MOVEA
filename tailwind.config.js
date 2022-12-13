@@ -21,6 +21,10 @@ module.exports = {
         'fifth': '#EEEEEE',
         'sixth': '#1597BB',
         'seventh': '#fd8300'
+      },
+
+      screens: {
+        'xs': '50px'
       }
     },
   },
