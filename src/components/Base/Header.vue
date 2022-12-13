@@ -28,7 +28,7 @@
                     {{ description }}
                 </p>
             </div>
-            <div class="w-full flex justify-center gap-4" v-if="news != ''">
+            <div class="w-full flex justify-center flex-wrap gap-4" v-if="news != ''">
                 <Card
                 v-for="(info, index) in news"
                 :key="index"

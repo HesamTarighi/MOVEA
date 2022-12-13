@@ -1,6 +1,6 @@
 <template>
   <div class="w-full" :class="$store.state.lock_scroll ? 'h-screen overflow-y-hidden' : ''">
-    <Loading :enable="$store.state.loading || false"/>
+    <!-- <Loading :enable="$store.state.loading || false"/> -->
     <Window :enable="$store.state.signin_window" @window="closeWindow" v-slot="props">
       <CForm :class="props.class"></CForm>
     </Window>

@@ -1,5 +1,6 @@
 <template>
     <section class="w-full relative bg-cover bg-center">
+        <canvas class="absolute" ref="canvas"></canvas>
         <div class="w-70% flex justify-between relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden" :class="`plan plan_${index} ${index == 1 ? 'active-plan' : ''}`">
                 <div class="w-full relative">
@@ -24,6 +25,9 @@
     import Modal from '../Modal.vue'
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
+
+    import { BubbleAnimation } from '../../composabels/shapes_animation'
+
     export default {
         components: {
             Modal,
@@ -31,7 +35,7 @@
             Icon
         },
 
-        data() {
+        data () {
             return {
                 plans: [
                     {
@@ -52,14 +56,28 @@
                 ]
             }
         },
+
+        computed: {
+            bubble_animation () {
+                return new BubbleAnimation(this.$refs.canvas)
+            }
+        },
+
+        mounted () {
+            this.setCanvasSize()
+            this.bubble_animation.movingBubble()
+        },
+        
+        methods: {
+            setCanvasSize () {
+                this.$refs.canvas.width = this.$el.clientWidth
+                this.$refs.canvas.height = this.$el.clientHeight
+            }
+        }
     }
 </script>
 
 <style scoped>
-    /* section {
-        background-image: url('../../assets/bg.png');
-    } */
-
     .plan {
         max-width: 350px;
     }
