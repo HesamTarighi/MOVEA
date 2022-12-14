@@ -28,7 +28,7 @@
                     {{ description }}
                 </p>
             </div>
-            <div class="w-full flex flex-wrap justify-center gap-4" v-if="news != ''">
+            <div class="w-full flex justify-center flex-wrap gap-4" v-if="news != ''">
                 <Card
                 v-for="(info, index) in news"
                 :key="index"
@@ -57,7 +57,6 @@
             Card,
             CForm
         },
-
         data() {
             return {
               best: {
@@ -75,17 +74,14 @@
                 }
             }
         },
-
         computed: {
           name() {
             return this.best.name.toUpperCase()
           },
-
           news() {
             if (this.$store.getters.news.length > 9) return this.$store.getters.news.slice(0, 9)
             else return this.$store.getters.news
           },
-
           description() {
             const max_char = 700
             if(this.best != null) {
@@ -104,14 +100,12 @@
     header {
         min-height: 100vh;
     }
-
     .name {
         background: linear-gradient(to bottom, #eeeeee 30%, #393E46);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-
     .description {
         background: linear-gradient(to bottom, #393E46, rgb(0, 0, 0, 0));
         background-clip: text;
