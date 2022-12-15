@@ -1,6 +1,8 @@
 <template>
     <section class="w-full relative bg-cover bg-center">
-        <canvas class="absolute" ref="canvas"></canvas>
+        <div id="canvas_container">
+
+        </div>
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden" :class="`plan plan_${index} ${index == 1 ? 'active-plan' : ''}`">
                 <div class="w-full relative">
@@ -26,7 +28,7 @@
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
 
-    import { BubbleAnimation } from '../../composabels/shapes_animation'
+    import Konva from 'konva'
 
     export default {
         components: {
@@ -57,21 +59,41 @@
             }
         },
 
-        computed: {
-            bubble_animation () {
-                return new BubbleAnimation(this.$refs.canvas)
-            }
+        mounted () {
+            this.defineEffect()
         },
 
-        mounted () {
-            this.setCanvasSize()
-            this.bubble_animation.movingBubble()
-        },
-        
         methods: {
-            setCanvasSize () {
-                this.$refs.canvas.width = this.$el.clientWidth
-                this.$refs.canvas.height = this.$el.clientHeight
+            defineEffect () {
+                const stage = new Konva.Stage({
+                    container: 'canvas_container',
+                    width: this.$el.clientWidth,
+                    height: this.$el.clientHeight
+                })
+                const layer = new Konva.Layer()
+
+                const bubble = new Konva.Circle({
+                    x: 50,
+                    y: 50,
+                    radius: 15,
+                    fill: 'red',
+                    stroke: 'black',
+                    strokeWidth: 4
+                })
+
+                layer.add(bubble)
+                stage.add(layer)
+
+                var amplitude = stage.width()
+                var period = 3000
+
+                var anim = new Konva.Animation((frame) => {
+                    bubble.x(
+                        amplitude * Math.sin((frame.time * 2 * Math.PI) / period) + 500
+                    )
+                }, layer)
+
+                anim.start();
             }
         }
     }
