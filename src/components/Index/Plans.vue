@@ -4,7 +4,7 @@
 
         </div>
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
-            <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden" :class="`plan plan_${index} ${index == 1 ? 'active-plan' : ''}`">
+            <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden" :class="`plan plan_${index} ${plan[index].special ? 'active-plan' : ''}`">
                 <div class="w-full relative">
                     <div class="flex flex-col items-center relative gap-1 py-12 px-24">
                         <span> {{ plan.title }} </span>
@@ -48,7 +48,8 @@
                     {
                         title: 'Pro',
                         price: '399.99',
-                        time: '6Mounth'
+                        time: '6Mounth',
+                        special: true
                     },
                     {
                         title: 'Elite',
