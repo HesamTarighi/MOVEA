@@ -4,8 +4,8 @@
 
         </div>
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
-            <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden" :class="`plan plan_${index} ${plan[index].special ? 'active-plan' : ''}`">
-                <div class="w-full relative">
+            <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
+                <div class="w-full relative" :class="`plan_${index}`">
                     <div class="flex flex-col items-center relative gap-1 py-12 px-24">
                         <span> {{ plan.title }} </span>
                         <span class="text-3xl"> ${{ plan.price }} </span>
@@ -61,27 +61,39 @@
         },
 
         mounted () {
-            this.defineEffect()
-
-            new Ball().test()
-        },
-
-        computed: {
-            // konva () {
-            //     return {
-            //         stage: new Konva.Stage({ container: 'canvas_container', width: this.$el.clientWidth, height: this.$el.clientHeight }),
-            //         layer: new Konva.Layer()
-            //     }
-            // }
-
-
+            this.defineBall()
         },
 
         methods: {
-            defineBubble (bubble_property) {
-            },
+            defineBall () {
+                const ball = new Ball({
+                width: 50,
+                height: 50,
+                position: {
+                    x: 80,
+                    y: 80
+                },
+                background: '#141414',
+                animation: {
+                    move: {
+                        speed: {
+                            x: 2,
+                            y: 2
+                        },
+                        direction: {
+                            x: 1,
+                            y: 1
+                        }
+                    }
+                }
+                })
 
-            defineEffect () {
+                ball.defineCanvas({
+                    width: this.$el.clientWidth,
+                    height: this.$el.clientHeight,
+                    parentID: 'canvas_container'
+                })
+                ball.draw()
             }
         }
     }

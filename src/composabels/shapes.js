@@ -25,29 +25,36 @@ function P5setup (p5) {
 }
 
 export default class Ball {
-    constructor () {
-        // this.raduis = radius
-        // this.xpos, xpos
-        // this.ypos, ypos
-        // this.xspeed = xspeed
-        // this.yspeed = yspeed
-        // this.xdirection = xdirection
-        // this.ydirection = ydirection
+    constructor ({
+        width = 50, height = 50, position = {x: 50, y: 50}, background = 102, animation = false
+    }) {
+        this.width = width
+        this.height = height
+        this.position = position
+        this.background = background
+        this.animation = animation
 
-        new P5(this.P5setup.bind(this))
+        if (animation.move) this.isMove = true
+
+        new P5((p5 => this.p5 = p5).bind(this))
     }
 
-    P5setup (p5) {
-        this.p5 = p5
-    
+    defineCanvas ({ width, height, parentID }, options = {}) {
         this.p5.setup = () => {
-            this.p5.createCanvas(this.canvas.canvasWidth, this.canvas.canvasHeight)
+            this.p5.frameRate(options.frameRate || 40)
+            this.p5.createCanvas(width, height).parent(parentID)
         }
     }
 
-    defineCanvas (width, height, parentID) {
-
+    draw () {
+        this.p5.draw = () => {
+            this.p5.background(this.background)
+            if (this.isMove) this.move()
+            this.p5.ellipse(this.position.x, this.position.y, this.width, this.height)
+        }
     }
 
-
+    move () {
+        this.position.x += this.animation.move.speed.x * this.animation.move.direction.x
+    }
 }
