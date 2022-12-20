@@ -1,7 +1,6 @@
 <template>
     <section class="w-full relative bg-cover bg-center">
         <div id="canvas_container" class="absolute">
-
         </div>
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
@@ -66,34 +65,37 @@
 
         methods: {
             defineBall () {
-                const ball = new Ball({
-                width: 50,
-                height: 50,
-                position: {
-                    x: 80,
-                    y: 80
-                },
-                background: '#141414',
-                animation: {
-                    move: {
-                        speed: {
-                            x: 2,
-                            y: 2
-                        },
-                        direction: {
-                            x: 1,
-                            y: 1
-                        }
-                    }
-                }
-                })
+                const ball = new Ball()
 
                 ball.defineCanvas({
                     width: this.$el.clientWidth,
                     height: this.$el.clientHeight,
                     parentID: 'canvas_container'
                 })
-                ball.draw()
+                
+                for (let i = 0; i < 5; i++) {
+                    ball.draw({
+                        width: 50,
+                        height: 50,
+                        position: {
+                            x: 80,
+                            y: 50 * (i + 1)
+                        },
+                        background: '#141414',
+                        animation_options: {
+                            move: {
+                                speed: {
+                                    x: 4,
+                                    y: 2
+                                },
+                                direction: {
+                                    x: 1,
+                                    y: 1
+                                }
+                            }
+                        }
+                    })
+                }
             }
         }
     }
