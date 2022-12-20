@@ -66,34 +66,32 @@
 
         methods: {
             defineBall () {
-                const ball = new Ball({
-                width: 50,
-                height: 50,
-                position: {
-                    x: 80,
-                    y: 80
-                },
-                background: '#141414',
-                animation: {
-                    move: {
-                        speed: {
-                            x: 2,
-                            y: 2
-                        },
-                        direction: {
-                            x: 1,
-                            y: 1
-                        }
-                    }
-                }
-                })
+                const ball = new Ball()
 
                 ball.defineCanvas({
                     width: this.$el.clientWidth,
                     height: this.$el.clientHeight,
                     parentID: 'canvas_container'
                 })
-                ball.draw()
+                ball.draw({
+                    width: 50,
+                    height: 50,
+                    position: {
+                        x: 80,
+                        y: 80
+                    },
+                    background: '#141414'
+                })
+                ball.move({
+                    speed: {
+                        x: 2,
+                        y: 2
+                    },
+                    direction: {
+                        x: 1,
+                        y: 1
+                    }
+                })
             }
         }
     }

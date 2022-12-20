@@ -25,17 +25,7 @@ function P5setup (p5) {
 }
 
 export default class Ball {
-    constructor ({
-        width = 50, height = 50, position = {x: 50, y: 50}, background = 102, animation = false
-    }) {
-        this.width = width
-        this.height = height
-        this.position = position
-        this.background = background
-        this.animation = animation
-
-        if (animation.move) this.isMove = true
-
+    constructor () {
         new P5((p5 => this.p5 = p5).bind(this))
     }
 
@@ -47,14 +37,22 @@ export default class Ball {
     }
 
     draw () {
-        this.p5.draw = () => {
+        this.p5.draw = ({
+            width = 50, height = 50, position = {x: 50, y: 50}, background = 102
+        }) => {
+            
+            // set public properties
+            this.width = width
+            this.height = height
+            this.position = position
+            this.background = background
+
             this.p5.background(this.background)
-            if (this.isMove) this.move()
             this.p5.ellipse(this.position.x, this.position.y, this.width, this.height)
         }
     }
 
-    move () {
-        this.position.x += this.animation.move.speed.x * this.animation.move.direction.x
+    move (move) {
+        this.position.x += move.speed.x * move.direction.x
     }
 }
