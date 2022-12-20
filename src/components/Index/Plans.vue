@@ -1,7 +1,6 @@
 <template>
-    <section class="w-full relative bg-cover bg-center">
-        <div id="canvas_container" class="absolute">
-        </div>
+    <section class="w-full relative bg-cover bg-center" ref="section">
+        <BallEffect :width="size.width" :height="size.height" />
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
@@ -26,14 +25,16 @@
     import Modal from '../Modal.vue'
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
+    import BallEffect from '../BallEffect.vue'
 
-    import Ball from '../../composabels/shapes'
+    // import Ball from '../../composabels/shapes'
 
     export default {
         components: {
             Modal,
             CButton,
-            Icon
+            Icon,
+            BallEffect
         },
 
         data () {
@@ -59,44 +60,20 @@
             }
         },
 
+        computed: {
+            size () {
+                console.log(this)
+                return {
+                    width: this.$refs.section.clientWidth,
+                    height: this.$refs.section.clientHeight
+                }
+            }
+        },
+
         mounted () {
-            this.defineBall()
         },
 
         methods: {
-            defineBall () {
-                const ball = new Ball()
-
-                ball.defineCanvas({
-                    width: this.$el.clientWidth,
-                    height: this.$el.clientHeight,
-                    parentID: 'canvas_container'
-                })
-                
-                for (let i = 0; i < 5; i++) {
-                    ball.draw({
-                        width: 50,
-                        height: 50,
-                        position: {
-                            x: 80,
-                            y: 50 * (i + 1)
-                        },
-                        background: '#141414',
-                        animation_options: {
-                            move: {
-                                speed: {
-                                    x: 4,
-                                    y: 2
-                                },
-                                direction: {
-                                    x: 1,
-                                    y: 1
-                                }
-                            }
-                        }
-                    })
-                }
-            }
         }
     }
 </script>

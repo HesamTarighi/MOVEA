@@ -15,12 +15,10 @@ export default class Ball {
     draw ({
         width = 50, height = 50, position = {x: 50, y: 50}, background = 102, animation_options = {}
     }) {
-        for (let i = 0; i < 6; i++) {
-            this.p5.draw = () => {
-                this.p5.background(background)
-                if (animation_options.move) animations().move()
-                this.p5.ellipse(position.x, 50 * i, width, height)
-            }
+        this.p5.draw = () => {
+            this.p5.background(background)
+            if (animation_options.move) animations().move()
+            this.p5.ellipse(position.x, 50 * i, width, height)
         }
 
         function animations () {
