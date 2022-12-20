@@ -27,8 +27,7 @@
     import Modal from '../Modal.vue'
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
-
-    import Ball from '../../composabels/shapes'
+    import BallEffect from '../com'
 
     export default {
         components: {
@@ -56,7 +55,8 @@
                         price: '599.99',
                         time: '12Mounth'
                     },
-                ]
+                ],
+                p5: null
             }
         },
 
@@ -66,32 +66,6 @@
 
         methods: {
             defineBall () {
-                const ball = new Ball()
-
-                ball.defineCanvas({
-                    width: this.$el.clientWidth,
-                    height: this.$el.clientHeight,
-                    parentID: 'canvas_container'
-                })
-                ball.draw({
-                    width: 50,
-                    height: 50,
-                    position: {
-                        x: 80,
-                        y: 80
-                    },
-                    background: '#141414'
-                })
-                ball.move({
-                    speed: {
-                        x: 2,
-                        y: 2
-                    },
-                    direction: {
-                        x: 1,
-                        y: 1
-                    }
-                })
             }
         }
     }
