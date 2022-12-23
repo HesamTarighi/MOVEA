@@ -1,6 +1,6 @@
 <template>
-    <section class="w-full relative bg-cover bg-center" ref="section">
-        <BallEffect :width="size.width" :height="size.height" />
+    <section class="w-full relative bg-cover bg-center">
+        <BallEffect />
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
@@ -26,8 +26,6 @@
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
     import BallEffect from '../BallEffect.vue'
-
-    // import Ball from '../../composabels/shapes'
 
     export default {
         components: {
@@ -58,22 +56,6 @@
                     },
                 ]
             }
-        },
-
-        computed: {
-            size () {
-                console.log(this)
-                return {
-                    width: this.$refs.section.clientWidth,
-                    height: this.$refs.section.clientHeight
-                }
-            }
-        },
-
-        mounted () {
-        },
-
-        methods: {
         }
     }
 </script>

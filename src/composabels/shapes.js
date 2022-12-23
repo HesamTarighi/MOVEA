@@ -1,34 +1,26 @@
-import P5 from 'p5'
-
 export default class Ball {
-    constructor () {
-        new P5((p5 => this.p5 = p5).bind(this))
+    constructor (p5, { position, size, fill, direction }) {
+        this.p5 = p5
+        this.position = position
+        this.size = size
+        this.fill = fill
+        this.direction = direction || { x: 1, y: 1 }
     }
 
-    defineCanvas ({ width, height, parentID }, options = {}) {
-        this.p5.setup = () => {
-            this.p5.frameRate(options.frameRate || 40)
-            this.p5.createCanvas(width, height).parent(parentID)
-        }
+    display () {
+        this.p5.fill(this.fill)
+        this.p5.ellipse(this.position.x, this.position.y, this.size.width, this.size.height)
     }
 
-    draw ({
-        width = 50, height = 50, position = {x: 50, y: 50}, background = 102, animation_options = {}
-    }) {
-        this.p5.draw = () => {
-            this.p5.background(background)
-            if (animation_options.move) animations().move()
-            this.p5.ellipse(position.x, 50 * i, width, height)
-        }
+    move ({ speed, limitMoving }) {
+        this.position.x += speed.x * this.direction.x
+        this.position.y += speed.y * this.direction.y
 
-        function animations () {
-            return {
-                move: () => position.x += animation_options.move.speed.x * animation_options.move.direction.x
-            }
+        if (limitMoving) {
+            if (this.position.x > limitMoving.x) this.direction.x = -1
+            if (this.position.x <= 0) this.direction.x = 1
+            if (this.position.y > limitMoving.y) this.direction.y = -1
+            if (this.position.y <= 0) this.direction.y = 1
         }
     }
-
-    // move (options) {
-    //     this.position.x += options.speed.x * options.direction.x
-    // }
 }
