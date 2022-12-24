@@ -8,8 +8,8 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import './index.css'
 
 const global = {
-    created() {
-        // this.receiveContents()
+    mounted() {
+        this.receiveContents()
     },
 
     methods: {
@@ -24,6 +24,6 @@ const global = {
 createApp(App)
 .use(store)
 .use(router)
-.mixin(global)
+// .mixin(global)
 .mixin(responsive)
 .mount('#app')
