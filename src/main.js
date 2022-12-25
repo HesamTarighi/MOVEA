@@ -7,23 +7,8 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 import './index.css'
 
-const global = {
-    mounted() {
-        this.receiveContents()
-    },
-
-    methods: {
-        receiveContents () {
-            store.dispatch('getMovies')
-            store.dispatch('getSeries')
-            store.dispatch('getTvs')
-        }
-    }
-}
-
 createApp(App)
 .use(store)
 .use(router)
-// .mixin(global)
 .mixin(responsive)
 .mount('#app')

@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full relative bg-cover bg-center">
+    <section class="w-full relative bg-cover bg-center" :style="`background-image: ~/assets/covers/${activeBackground};`">
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
@@ -51,9 +51,15 @@
                         price: '599.99',
                         time: '12Mounth'
                     },
+                ],
+                backgrounds: [
+                    'rings_of_power1.jpg',
+                    'wednesday2.jpg'
                 ]
             }
-        }
+        },
+
+        computed: {}
     }
 </script>
 
