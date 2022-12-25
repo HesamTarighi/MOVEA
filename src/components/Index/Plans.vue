@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full relative bg-cover bg-center" :style="`background-image: ~/assets/covers/${activeBackground};`">
+    <section class="w-full relative bg-cover bg-center" :style="`background-image: url(${require(`../../assets/covers/${activeBackground}`)})`">
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
@@ -53,13 +53,21 @@
                     },
                 ],
                 backgrounds: [
-                    'rings_of_power1.jpg',
+                    'rings_of_power1.png',
                     'wednesday2.jpg'
-                ]
+                ],
+                activeBackground: ''
             }
         },
 
-        computed: {}
+        mounted () {
+        },
+
+        methods: {
+            switchBackground () {
+                
+            }
+        },
     }
 </script>
 
