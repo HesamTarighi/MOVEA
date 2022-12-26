@@ -1,5 +1,6 @@
 <template>
-    <section class="w-full relative bg-cover bg-center" :style="`background-image: ~/assets/covers/${activeBackground};`">
+    <section class="w-full relative bg-cover bg-center" :style="activeBackground != '' ? `background-image: url(${require(`../../assets/covers/${activeBackground}`)})` : ''">
+        <div id="modal" class="w-full h-full bg-black absolute top-0 left-0 transition-all duration-400" ref="modal"></div>
         <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
@@ -24,6 +25,8 @@
     import Modal from '../Modal.vue'
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
+
+    import anime from 'animejs'
 
     export default {
         components: {
@@ -53,13 +56,36 @@
                     },
                 ],
                 backgrounds: [
-                    'rings_of_power1.jpg',
-                    'wednesday2.jpg'
-                ]
+                    'rings_of_power1.png',
+                    'wednesday2.jpg',
+                    'vikings1.jpg',
+                    'piki1.jpg'
+                ],
+                activeBackground: '',
+                modalOpacity: 0
             }
         },
 
-        computed: {}
+        mounted () {
+            this.switchBackground()
+        },
+
+        methods: {
+            switchBackground () {
+                this.activeBackground = this.backgrounds[Math.floor(Math.random() * this.backgrounds.length)]
+
+                setInterval(() => {
+                    this.activeBackground = this.backgrounds[Math.floor(Math.random() * this.backgrounds.length)]
+                    
+                    anime({
+                        targets: '#modal',
+                        opacity: [0, 0, 1],
+                        duration: 6000,
+                        loop: false
+                    })
+                }, 6000)
+            }
+        },
     }
 </script>
 
