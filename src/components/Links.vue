@@ -1,6 +1,6 @@
 <template>
     <ul class="flex gap-8">
-        <li v-for="(link, index) in links" :key="index" class="relative" :class="link.href == $route.path && selected_option ? 'text-third border-b border-third pb-8 -mb-6' : ''">
+        <li v-for="(link, index) in links" :key="index" class="relative" :class="link.href == $route.path && selected_option ? 'text-third border-b border-third pb-4 -mb-4' : ''">
           <a :href="link.href">{{ link.text }}</a>
         </li>
     </ul>

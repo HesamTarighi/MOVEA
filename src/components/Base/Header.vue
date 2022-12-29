@@ -5,7 +5,7 @@
 
         <section class="w-full flex flex-col justify-center items-center py-4 relative z-20">
             <div class="w-70% flex flex-col gap-4">
-                <h1 class="text-6xl font-raleway uppercase name">{{ name }}</h1>
+                <h1 class="text-7xl font-melody uppercase name">{{ name }}</h1>
                 <span class="text-2xl">Session {{ best.session }}</span>
                 <div class="space-y-2">
                     <div>
@@ -60,17 +60,18 @@
         data() {
             return {
               best: {
-                    name: 'WITCHER',
+                    name: 'WEDNESDAY',
                     session: 1,
-                    rating: 8,
+                    rating: 8.4,
                     price: '5.99',
-                    description: 'Geralt of Rivia, a brooding professional monster hunter for hire also known as witcher, struggles to keep his humanity in a medieval dark fantasy world ruled by corrupt kings, queens and mages, where poverty, violence and intolerance are rampant, normal humans are sometimes worse than actual monsters and most jobs that pay well involve the darkest of human emotions and desires. Yennefer of Vengerberg is an ambitious mage who came from nothing and wants everything. Princess Cirilla or Ciri is a young girl who may or may not possess some great mysterious power within her. Their destinies, seemingly quite different, slowly intertwine in a rather cosmic fashion. Their companions include Jaskier the bard, Geralts endearingly annoying friend and hype man vowed to spread the word of his heroics throughout the continent even if he has to embellish them a little for a few coins more, Tissaia de Vries, Yennefers secretive mentor who believes in tough love, and Triss Merigold, a good-natured druidic mage and trustworthy friend. The Nilfgaardian Empires sudden brutal invasion of the kingdom of Cintra ruled by Cirillas protective grandmother, warrior queen Calanthe, puts their lives in great danger.',
-                    cover: 'witcher2.jpg',
+                    description: 'Follows Wednesday Addams years as a student, when she attempts to master her emerging psychic ability, thwart and solve the mystery that embroiled her parents.',
+                    cover: 'wednesday1.jpg',
                     genres: [
                         'Crime',
                         'Drama',
                         'Mystery'
-                    ]
+                    ],
+                    href: '/'
                 }
             }
         },
@@ -89,7 +90,7 @@
                 let filter_text = this.best.description.slice(0, max_char)
                 filter_text += '...'
                 return filter_text
-              }else return this.best.description
+              } else return this.best.description
             }
           }
         },
@@ -101,7 +102,7 @@
         min-height: 100vh;
     }
     .name {
-        background: linear-gradient(to bottom, #eeeeee 30%, #393E46);
+        background: linear-gradient(to bottom, #eeeeee, #393E46);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

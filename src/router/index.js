@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from '../views/Index'
 import Watch from '../views/Watch'
+import Bookmark from '../views/Bookmark'
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/watch/:id',
     name: 'Watch',
     component: Watch
+  },
+  {
+    path: '/bookmark',
+    name: 'Bookmark',
+    component: Bookmark
   }
 ]
 

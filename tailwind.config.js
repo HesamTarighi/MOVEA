@@ -10,7 +10,8 @@ module.exports = {
       fontFamily: {
         'quick_sand': ['"Quicksand"', 'sans-serif'],
         'caveat': ['"Caveat"', 'sans-serif'],
-        'raleway': ['"Raleway"', 'sans-serif']
+        'raleway': ['"Raleway"', 'sans-serif'],
+        'melody': ['Hi Melody', 'sans-serif']
       },
 
       colors: {

@@ -1,6 +1,6 @@
 <template>
     <div id="canvas_container" class="w-full h-full absolute">
-        
+
     </div>
 </template>
 
@@ -26,20 +26,20 @@
             setup () {
                 this.p5.setup = () => {
                     this.p5.noStroke()
-                    this.p5.frameRate(120)
-                    this.p5.createCanvas(this.$el.clientWidth, this.$el.clientHeight + 50).parent('canvas_container')
+                    this.p5.frameRate(60)
+                    this.p5.createCanvas(this.$el.clientWidth, this.$el.clientHeight).parent('canvas_container')
                 }
             },
 
             draw () {
                 const balls = []
 
-                for (let i = 0; i < 10; i++) balls.push(
+                for (let i = 0; i < 350; i++) balls.push(
                     new Ball(this.p5, {
-                        position: { x: Math.random() * this.$el.clientWidth, y: 100 + Math.random() * this.$el.clientHeight },
-                        size: { width: 35, height: 35 },
-                        fill: 'red',
-                        canvasBackground: '#141414'
+                        position: { x: 0 + Math.random() * this.$el.clientWidth, y: -100 + Math.random() * this.$el.clientHeight },
+                        size: { width: 5, height: 5 },
+                        padding: { x: 60, y: 50 },
+                        container_size: { width: this.$el.clientWidth, height: this.$el.clientHeight }
                     })
                 )
 

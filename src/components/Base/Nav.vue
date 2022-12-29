@@ -1,8 +1,8 @@
 <template>
-      <nav class="w-full grid grid-cols-3 py-5 px-16 border-b border-fourth relative z-20">
+      <nav class="w-full grid grid-cols-3 py-5 px-16 bg-primary bg-opacity-30 relative z-20 hover:bg-opacity-80">
         <div class="flex justify-center items-center">
             <a href="/" class="text-xl">
-                MOVEA
+                MOVIA
             </a>
         </div>
         <div class="relative flex justify-center items-center">
@@ -13,7 +13,7 @@
           <button class="bg-secondary rounded-full hover:bg-opacity-70" @click="toggle = !toggle"> <Icon class="px-2 py-2"> search </Icon> </button>
           <Menu class="absolute top-12 -ml-36 z-50" :toggle="toggle_menu" :results="results"/>
           <div>
-            <button> <Icon> bookmarks </Icon> </button>
+            <a href="/bookmark"> <Icon> bookmarks </Icon> </a>
           </div>
           <div>
             <button @click="$store.commit('toggleSigninWindow', true)"> <Icon class="text-3xl"> person </Icon> </button>

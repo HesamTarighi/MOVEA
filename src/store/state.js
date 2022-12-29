@@ -5,5 +5,6 @@ export default {
     selected_content: '',
     lock_scroll: false,
     loading: false,
-    signin_window: false
+    signin_window: false,
+    snow_effect: true
 }

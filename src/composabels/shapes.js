@@ -1,11 +1,17 @@
-export default class Ball {
-    constructor (p5, { position, size, fill, direction }) {
+export default class Snow {
+    constructor (p5, { position, size, padding, container_size }) {
         this.p5 = p5
         this.position = position
-        this.velocity = 1 + Math.random() * 3
         this.size = size
-        this.fill = fill
+        this.setVelocity()
+        this.fill = '#fff'
         this.direction = { x: Math.floor(-1 + Math.random() * 1), y: Math.floor(-1 + Math.random() * 1) }
+        this.padding = padding
+        this.container_size = container_size
+    }
+
+    setVelocity () {
+        this.velocity = .5 + Math.random() * 3
     }
 
     display () {
@@ -14,14 +20,14 @@ export default class Ball {
     }
 
     move ({ limitMoving }) {
-        this.position.x += this.velocity * this.direction.x
-        this.position.y += this.velocity * this.direction.y
+        this.position.y += this.velocity
 
         if (limitMoving) {
-            if (this.position.x > limitMoving.x) this.direction.x = -1
-            if (this.position.x <= 0) this.direction.x = 1
-            if (this.position.y > limitMoving.y) this.direction.y = -1
-            if (this.position.y <= 0) this.direction.y = 1
+            if (this.position.y > limitMoving.y + 100) {
+                this.setVelocity()
+                this.position.x = Math.random() * this.container_size.width
+                this.position.y = -100
+            }
         }
     }
 }

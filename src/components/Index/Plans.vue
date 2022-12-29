@@ -1,7 +1,7 @@
 <template>
-    <section class="w-full relative bg-cover bg-center" :style="activeBackground != '' ? `background-image: url(${require(`../../assets/covers/${activeBackground}`)})` : ''">
-        <div id="modal" class="w-full h-full bg-black absolute top-0 left-0 transition-all duration-400" ref="modal"></div>
-        <div class="w-70% flex gap-6 relative z-10 mx-auto py-4">
+    <section class="w-full relative">
+        <Effect class="z-10"/>
+        <div class="w-60% flex gap-6 relative z-10 mx-auto py-4">
             <div v-for="(plan, index) in plans" :key="index" class="rounded-md overflow-hidden">
                 <div class="w-full relative" :class="`plan_${index}`">
                     <div class="flex flex-col items-center relative gap-1 py-12 px-24">
@@ -25,6 +25,7 @@
     import Modal from '../Modal.vue'
     import CButton from '../Button.vue'
     import Icon from '../Icon.vue'
+    import Effect from '../SnowEffect.vue'
 
     import anime from 'animejs'
 
@@ -32,7 +33,8 @@
         components: {
             Modal,
             CButton,
-            Icon
+            Icon,
+            Effect
         },
 
         data () {
@@ -59,7 +61,8 @@
                     'rings_of_power1.png',
                     'wednesday2.jpg',
                     'vikings1.jpg',
-                    'piki1.jpg'
+                    'piki1.jpg',
+                    'see1.jpg'
                 ],
                 activeBackground: '',
                 modalOpacity: 0
@@ -79,11 +82,11 @@
                     
                     anime({
                         targets: '#modal',
-                        opacity: [0, 0, 1],
-                        duration: 6000,
+                        opacity: [0, 0, 1, 0],
+                        duration: 11000,
                         loop: false
                     })
-                }, 6000)
+                }, 8000)
             }
         },
     }
