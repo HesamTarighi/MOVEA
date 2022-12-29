@@ -12,7 +12,7 @@
                 </div>
                 <div class="bg-secondary px-2 py-4 flex flex-col items-center gap-4">
                     <ul class="list-disc list-inside space-y-3 self-start">
-                        <li v-for="plan in 7" :key="plan" class="text-fifth opacity-70"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid </li>
+                        <li v-for="plan in 5" :key="plan" class="text-fifth opacity-70"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid </li>
                     </ul>
                     <CButton class="flex items-center gap-2"> <Icon>shopping_cart</Icon> Buy plan </CButton>
                 </div>
