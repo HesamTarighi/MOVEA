@@ -52,9 +52,9 @@ export default {
   async mounted () {
     if (this.info == '') this.$store.commit('toggleLoading', true)
     await this.$store.dispatch('searchingById', this.$route.params.id)
+
     this.info = this.$store.state.selected_content
-    this.$store.commit('toggleLoading', false)
-  },
+  }
 }
 </script>
 

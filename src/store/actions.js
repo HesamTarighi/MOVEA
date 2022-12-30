@@ -2,36 +2,53 @@ import axios from 'axios'
 
 export default {
     //Movies
-    async getMovies ({commit}) {
+    getMovies ({commit}) {
+        const proxy = {
+            '/api/': {
+                target: 'https://imdbapi.cyclic.app'
+            }
+        }
         const today = new Date()
-        await axios.get(`api/advance_search/?title_type=feature&release_date=2022-01-01,${today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()}`)
+        axios.get(`/api/advance_search/?title_type=feature&release_date=2022-01-01,${today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()}`, {proxy})
             .then(res => commit('setMovies', res.data))
     },
 
     //Series
-    async getSeries ({commit}) {
-        await axios.get(`api/advance_search/?title_type=tv_miniseries`)
+    getSeries ({commit}) {
+        const proxy = {
+            '/api/': {
+                target: 'https://imdbapi.cyclic.app'
+            }
+        }
+        axios.get(`/api/advance_search/?title_type=tv_miniseries`, {proxy})
             .then(res => commit('setSeries', res.data))
     },
 
     //Tvs
-    async getTvs ({commit}) {
-        await axios.get(`api/advance_search/?title_type=tv_movie&release_date=2022-01-01,2023-01-01`)
+    getTvs ({commit}) {
+        const proxy = {
+            '/api/': {
+                target: 'https://imdbapi.cyclic.app'
+            }
+        }
+        axios.get(`/api/advance_search/?title_type=tv_movie&release_date=2022-01-01,2023-01-01`, {proxy})
             .then(res => commit('setTvs', res.data))
     },
 
     //Searching in id
-    async searchingById ({commit}, id) {
-        await axios.get(`api/title/${id}`)
+    searchingById ({commit}, title) {
+        axios.get(`https://imdbapi.cyclic.app/api/title/${title}`)
             .then(res => commit('setSelectedContent', res.data))
     },
 
     //Searching in Title
     async searchingByTitle ({commit}, title) {
-        const headers = {
-            'Access-Control-Allow-Origin': '*'
+        const proxy = {
+            '/api/': {
+                target: 'https://imdbapi.cyclic.app'
+            }
         }
 
-        return await axios.get(`api/search/${title}`, {headers})
+        return await axios.get(`/api/search/${title}`, {proxy})
     }
 }
