@@ -80,7 +80,7 @@
             return this.best.name.toUpperCase()
           },
           news() {
-            if (this.$store.getters.news.length > 9) return this.$store.getters.news.slice(0, 9)
+            if (this.$store.getters.news.length > 6) return this.$store.getters.news.slice(0, 6)
             else return this.$store.getters.news
           },
           description() {

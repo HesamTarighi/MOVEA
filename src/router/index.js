@@ -10,7 +10,7 @@ const routes = [
     component: Index
   },
   {
-    path: '/watch/:id',
+    path: '/watch/:title',
     name: 'Watch',
     component: Watch
   },

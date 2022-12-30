@@ -31,6 +31,16 @@
 
     created() {
       if (this.contents[0] == '' || this.contents[1] == '' || this.contents[2] == '') this.$store.commit('toggleLoading', true)
+    
+      this.receiveContents()
+    },
+
+    methods: {
+      receiveContents () {
+        this.$store.dispatch('getMovies')
+        this.$store.dispatch('getSeries')
+        this.$store.dispatch('getTvs')
+      }
     },
 
     watch: {

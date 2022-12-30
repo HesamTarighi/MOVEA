@@ -50,8 +50,8 @@ export default {
   },
 
   async mounted () {
-    if (this.info == '') this.$store.commit('toggleLoading', true)
-    await this.$store.dispatch('searchingById', this.$route.params.id)
+    // if (this.info == '') this.$store.commit('toggleLoading', true)
+    await this.$store.dispatch('searchingByTitle', this.$route.params.title)
 
     this.info = this.$store.state.selected_content
   }

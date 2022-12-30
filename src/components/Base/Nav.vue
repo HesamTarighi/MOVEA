@@ -49,7 +49,7 @@ export default {
 
   methods: {
     async searching(search_data) {
-      this.$store.dispatch('searchingByTitle', search_data)
+      this.$store.dispatch('searchingByName', search_data)
           .then(results => {
             if (results.data.length > 10) this.results = results.data.slice(0, 10)
           })

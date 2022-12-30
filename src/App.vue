@@ -24,19 +24,9 @@
       Loading
     },
 
-    mounted() {
-        this.receiveContents()
-    },
-
     methods: {
       closeWindow(close) {
         this.$store.commit('toggleSigninWindow', close)
-      },
-
-      receiveContents () {
-        this.$store.dispatch('getMovies')
-        this.$store.dispatch('getSeries')
-        this.$store.dispatch('getTvs')
       }
     }
   }
