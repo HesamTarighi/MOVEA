@@ -9,7 +9,7 @@ export default {
             }
         }
         const today = new Date()
-        axios.get(`/api/advance_search/?title_type=feature&release_date=2022-01-01,${today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()}`, {proxy})
+        axios.get(`https://imdbapi.cyclic.app/api/advance_search/?title_type=feature&release_date=2022-01-01,${today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()}`, {proxy})
             .then(res => commit('setMovies', res.data))
     },
 
@@ -20,7 +20,7 @@ export default {
                 target: 'https://imdbapi.cyclic.app'
             }
         }
-        axios.get(`/api/advance_search/?title_type=tv_miniseries`, {proxy})
+        axios.get(`https://imdbapi.cyclic.app/api/advance_search/?title_type=tv_miniseries`, {proxy})
             .then(res => commit('setSeries', res.data))
     },
 
@@ -31,7 +31,7 @@ export default {
                 target: 'https://imdbapi.cyclic.app'
             }
         }
-        axios.get(`/api/advance_search/?title_type=tv_movie&release_date=2022-01-01,2023-01-01`, {proxy})
+        axios.get(`https://imdbapi.cyclic.app/api/advance_search/?title_type=tv_movie&release_date=2022-01-01,2023-01-01`, {proxy})
             .then(res => commit('setTvs', res.data))
     },
 
@@ -49,6 +49,6 @@ export default {
             }
         }
 
-        return await axios.get(`/api/search/${title}`, {proxy})
+        return await axios.get(`https://imdbapi.cyclic.app/api/search/${title}`, {proxy})
     }
 }
